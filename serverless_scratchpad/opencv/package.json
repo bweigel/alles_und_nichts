@@ -1,0 +1,20 @@
+{
+  "name": "opencv-test",
+  "version": "1.0.0",
+  "description": "Template that contains a basic AWS lambda function alongside serverless and pytest for testing",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hypoport/opencv-test"
+  },
+  "author": "Europace dNa",
+  "license": "MIT license",
+  "bugs": {
+    "url": "https://github.com/hypoport/opencv-test/issues"
+  },
+  "homepage": "https://github.com/hypoport/opencv-test#readme",
+  "devDependencies": {
+    "serverless": "^1.27.3",
+    "serverless-plugin-tracing": "^2.0.0",
+    "serverless-python-requirements": "^3.0.7"
+  }
+}

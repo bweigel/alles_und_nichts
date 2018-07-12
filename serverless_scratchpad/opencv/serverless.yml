@@ -1,0 +1,44 @@
+service:
+  name: opencv-test
+
+plugins:
+  - serverless-python-requirements
+
+provider:
+  name: aws
+  runtime: python3.6
+  region: eu-central-1
+
+  stage: ${opt:stage, self:custom.defaultStage}
+  profile: ${opt:profile, "default"}
+  memorySize: 256
+  timeout: 10
+  deploymentBucket:
+    name: eigelb.projects
+  stackTags:
+    service: ${ self:service }
+
+package:
+  exclude:
+    - '**/*'
+  include:
+    - 'opencv/**'
+
+custom:
+  defaultStage: dev
+  pythonRequirements:
+    dockerizePip: 'true'
+    fileName: Pipfile
+    dockerFile: Dockerfile
+
+functions:
+  opencv:
+    name: opencv_${self:provider.stage}
+    handler: opencv.main.lambda_handler
+    events:
+      - http:
+          path: test
+          method: GET
+    environment:
+      STAGE: ${self:provider.stage}
+
